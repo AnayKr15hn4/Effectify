@@ -8,7 +8,7 @@ export const effects: Effect[] = [
     description:
       "Matrix-style text decryption effect on hover with random character cycling",
     preview: "/effects/cypher_animation/index.html",
-    video: "../../public/cypher.mp4",
+    video: "/cypher.mp4",
     thumbnail:
       "https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=600",
     code: {
@@ -68,7 +68,7 @@ document.querySelectorAll("h1").forEach(function(h1) {
     description:
       "Smooth draggable image carousel with parallax object positioning",
     preview: "/effects/carasell/index.html",
-    video: "../../public/paralax.mp4",
+    video: "/paralax.mp4",
     thumbnail:
       "https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=600",
     code: {
@@ -140,7 +140,7 @@ window.onmousemove = e => {
     description:
       "Interactive mouse-tracking background with fluid motion, static motion, and a soft glow trail",
     preview: "/effects/mouse_tracking_bg/index.html",
-    video: "../../public/mouse_tracking.mp4",
+    video: "/mouse_tracking.mp4",
     thumbnail: "../../public/mouse_tracking.png",
     code: {
       html: `<div id="blob"></div>
@@ -228,7 +228,7 @@ document.body.onpointermove = event => {
     description:
       "Interactive, scroll trigger animation with singular and staggerd animations",
     preview: "/effects/show_on_scroll/index.html",
-    video: "../../public/show_on_scroll.mp4",
+    video: "/show_on_scroll.mp4",
     thumbnail: "../../public/mouse_tracking.png",
     code: {
       html: `<div class="spacer"></div>
