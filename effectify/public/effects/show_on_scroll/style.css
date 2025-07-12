@@ -1,0 +1,56 @@
+body{
+    background-color: #131316;
+    color: #ffffff;
+    font-family: 'archivo';
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+section{
+    display: grid;
+    place-items: center;
+    align-content: center;
+    margin-top: 350px;
+    margin-bottom: 350px;
+}
+
+section h1{
+
+    font-weight: 900;
+    font-size: 3rem;
+
+}
+
+.hidden{
+    opacity: 0;
+    filter: blur(5px);
+    transition: all 1s;
+}
+
+
+.show{
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0);
+}
+
+
+
+.logos{
+    display: flex;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.logo:nth-child(2){
+    transition-delay: 200ms;
+}
+.logo:nth-child(3){
+    transition-delay: 400ms;
+}
+.logo:nth-child(4){
+    transition-delay: 600ms;
+}
+
+
