@@ -388,7 +388,7 @@ setInterval(clock,1000)
 `,
     },
     tags: [ "time", "clock"],
-    author: 'Alex Green',
+    author: 'Anay Krishna',
     status:""
   },
 ];
