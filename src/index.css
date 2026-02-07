@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+.font-secondary {
+  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+
+
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Common style for all ranks */
+
+
+/* Rank-specific gradients */
+.status-bronze {
+  background: linear-gradient(45deg, #cd7f32, #a97142, #cd7f32);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+}
+
+.status-silver {
+  background: linear-gradient(
+    45deg,
+    #a8a9ad,   /* dark silver */
+    #c0c0c0,   /* base silver */
+    #e0e0e0,   /* light silver */
+    #ffffff,   /* bright shine */
+    #d3d3d3,   /* neutral gray */
+    #a8a9ad    /* back to deep */
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+}
+
+
+.status-gold {
+  background: linear-gradient(45deg, #ffd700, #ffb700, #fcd440);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+}
+
+.status-platinum {
+  background: linear-gradient(
+    45deg,
+    #b0c4de,   /* light steel blue */
+    #a9c1dd,   /* cool silvery blue */
+    #c8d8e4,   /* icy platinum */
+    #d0e1f9,   /* pale sky blue */
+    #a9c1dd,   /* loop smoother */
+    #b0c4de
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 5s ease infinite;
+}
+
+
+
+.status-diamond {
+  background: linear-gradient(
+    45deg,
+    #003b73,   
+    #005f99,   
+    #0077b6,  
+    #0096c7,   
+    #005f99,   
+    #003b73
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 5s ease infinite;
+}
+
+.status-emerald {
+  background: linear-gradient(
+    45deg,
+    #046c4e,   /* deep emerald green */
+    #0fa66e,   /* vibrant green */
+    #38b487,   /* jade */
+    #6decb9,   /* minty emerald highlight */
+    #0fa66e,
+    #046c4e
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 5s ease infinite;
+}
+
+.status-big-boss {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 10s linear infinite;
+}

@@ -1,0 +1,47 @@
+
+> vite-react-typescript-starter@0.0.0 lint
+> eslint .
+
+
+C:\projects\Programming\effectify\src\App.tsx
+  12:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  64:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\Programming\effectify\src\components\EffectCard.tsx
+  158:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\Programming\effectify\src\components\EffectModal.tsx
+  105:55  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\Programming\effectify\src\components\Header.tsx
+  13:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  14:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\Programming\effectify\src\components\SortFilter.tsx
+  2:10  error  'ArrowUpDown' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\Programming\effectify\src\hooks\useFavorites.ts
+  15:16  error  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\projects\Programming\effectify\src\hooks\useSort.ts
+  22:9  error  Unexpected lexical declaration in case block  no-case-declarations
+
+C:\projects\Programming\effectify\src\pages\AdminDashboard.tsx
+   82:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  104:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  126:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\projects\Programming\effectify\src\pages\LoginPage.tsx
+   53:6   warning  React Hook useEffect has a missing dependency: 'validateUsername'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  115:19  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+
+C:\projects\Programming\effectify\src\pages\OnboardingPage.tsx
+   53:6   warning  React Hook useEffect has a missing dependency: 'validateUsername'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  109:19  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+
+C:\projects\Programming\effectify\src\utils\storage.ts
+  37:55  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  79:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 18 problems (16 errors, 2 warnings)
+

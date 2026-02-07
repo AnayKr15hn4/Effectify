@@ -1,0 +1,62 @@
+/* custom font */
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+/* morphing blob */
+#blob{
+    background-color: white;
+    height: 500px;
+    aspect-ratio: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background: linear-gradient(
+        to right,
+        aquamarine,
+        mediumpurple    
+    );
+    animation: rotate 20s infinite;
+}
+/* text */
+h1{
+  z-index: 3;
+  color: white;
+  font-family: "Space Mono",monospace;
+  font-size: 5rem;
+}
+/* blur 4 blob */
+#blur {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    backdrop-filter: blur(200px);    
+}
+/* animation 4 morphing */
+@keyframes rotate {
+    from {
+      /* Starting state of the animation */
+      rotate: 0deg;
+    }
+
+    50% {
+        scale: 1 1.5;
+    }
+    to {
+      /* Ending state of the animation */
+      rotate: 360deg;
+    }
+  }
+/* default body */
+  body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: black;
+}
