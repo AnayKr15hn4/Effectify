@@ -27,7 +27,6 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({ language, value, onChang
             padding: { top: 16 },
             scrollBeyondLastLine: false,
             fontFamily: "'Space Mono', monospace",
-            backgroundColor: '#000000',
           }}
         />
       </div>
