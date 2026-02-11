@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { Filter } from 'bad-words';
-import { ArrowLeft, Loader2, AlertCircle, CheckCircle, XCircle } from 'lucide-react';
+import { ArrowLeft, Loader2, AlertCircle } from 'lucide-react';
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -11,12 +11,6 @@ export function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const [usernameStatus, setUsernameStatus] = useState<
-    'checking' | 'available' | 'taken' | 'invalid' | null
-  >(null);
-
-  const [usernameMsg, setUsernameMsg] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -31,7 +25,6 @@ export function LoginPage() {
     }
   }, []);
 
-  // Username validation
   const validateUsername = async (username: string) => {
     if (username.length < 3) return 'Username must be at least 3 characters';
     if (filter.isProfane(username)) return 'Username contains inappropriate language';
@@ -49,32 +42,6 @@ export function LoginPage() {
     if (data) return 'Username is already taken';
     return null;
   };
-
-  // Real-time username check
-  useEffect(() => {
-    if (!isSignUp || !formData.username.trim()) {
-      setUsernameStatus(null);
-      setUsernameMsg(null);
-      return;
-    }
-
-    setUsernameStatus('checking');
-
-    const timer = setTimeout(async () => {
-      const msg = await validateUsername(formData.username);
-      if (msg) {
-        setUsernameStatus(
-          msg === 'Username is already taken' ? 'taken' : 'invalid'
-        );
-        setUsernameMsg(msg);
-      } else {
-        setUsernameStatus('available');
-        setUsernameMsg(null);
-      }
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [formData.username, isSignUp]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,19 +83,6 @@ export function LoginPage() {
     }
   };
 
-  const handleGoogleSignUp = async () => {
-    setLoading(true);
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}?auth_mode=signup`,
-      },
-    });
-
-    if (error) setError(error.message);
-    setLoading(false);
-  };
-
   return (
     <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-zinc-900 border border-zinc-800 rounded-2xl p-8 relative">
@@ -157,97 +111,68 @@ export function LoginPage() {
           </div>
         )}
 
-        <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
 
-          {/* GOOGLE ONLY ON SIGNUP */}
           {isSignUp && (
-            <>
-              <button
-                type="button"
-                onClick={handleGoogleSignUp}
-                className="w-full bg-white text-zinc-900 font-bold py-3 rounded-lg transition-all active:scale-95 hover:bg-zinc-200"
-              >
-                Continue with Google
-              </button>
-
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t border-zinc-800" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-zinc-900 px-2 text-zinc-500">
-                    Or continue with email
-                  </span>
-                </div>
-              </div>
-            </>
+            <div>
+              <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">
+                Username
+              </label>
+              <input
+                type="text"
+                required
+                value={formData.username}
+                onChange={(e) =>
+                  setFormData({ ...formData, username: e.target.value })
+                }
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none"
+                placeholder="cool_dev_99"
+              />
+            </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {isSignUp && (
-              <div>
-                <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">
-                  Username
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.username}
-                  onChange={(e) =>
-                    setFormData({ ...formData, username: e.target.value })
-                  }
-                  className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none"
-                  placeholder="cool_dev_99"
-                />
-                {usernameMsg && (
-                  <p className="text-xs mt-1 text-red-500">{usernameMsg}</p>
-                )}
-              </div>
-            )}
+          <div>
+            <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              required
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none"
+              placeholder="you@example.com"
+            />
+          </div>
 
-            <div>
-              <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                required
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none"
-                placeholder="you@example.com"
-              />
-            </div>
+          <div>
+            <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              required
+              minLength={6}
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none"
+              placeholder="••••••••"
+            />
+          </div>
 
-            <div>
-              <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                required
-                minLength={6}
-                value={formData.password}
-                onChange={(e) =>
-                  setFormData({ ...formData, password: e.target.value })
-                }
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-white focus:border-indigo-500 focus:outline-none"
-                placeholder="••••••••"
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg transition-all disabled:opacity-50"
-            >
-              {loading && <Loader2 className="w-5 h-5 animate-spin inline mr-2" />}
-              {isSignUp ? 'Create Account' : 'Sign In'}
-            </button>
-          </form>
-        </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+          >
+            {loading && <Loader2 className="w-5 h-5 animate-spin" />}
+            {isSignUp ? 'Create Account' : 'Sign In'}
+          </button>
+        </form>
 
         <div className="mt-6 text-center">
           <button
