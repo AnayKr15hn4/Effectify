@@ -83,6 +83,19 @@ export function LoginPage() {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}?auth_mode=login`,
+      },
+    });
+
+    if (error) setError(error.message);
+    setLoading(false);
+  };
+
   return (
     <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-zinc-900 border border-zinc-800 rounded-2xl p-8 relative">
@@ -111,8 +124,31 @@ export function LoginPage() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        {/* GOOGLE LOGIN ONLY */}
+        {!isSignUp && (
+          <div className="mb-4">
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="w-full bg-white text-zinc-900 font-bold py-3 rounded-lg transition-all active:scale-95 hover:bg-zinc-200"
+            >
+              Continue with Google
+            </button>
 
+            <div className="relative my-4">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-zinc-800" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-zinc-900 px-2 text-zinc-500">
+                  Or continue with email
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
           {isSignUp && (
             <div>
               <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">
