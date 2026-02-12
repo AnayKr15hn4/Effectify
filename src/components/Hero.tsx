@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
 
 export const Hero: React.FC = () => {
@@ -9,6 +9,17 @@ export const Hero: React.FC = () => {
     }
   };
 
+  // trigger rerender every 7 seconds
+  const [seed, setSeed] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeed(prev => prev + 1);
+    }, 7000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative overflow-hidden">
       {/* Black background */}
@@ -18,7 +29,7 @@ export const Hero: React.FC = () => {
       <div className="absolute inset-0 min-h-screen">
         {[...Array(20)].map((_, i) => (
           <div
-            key={i}
+            key={`${seed}-${i}`}
             className="absolute w-1 h-1 bg-white/40 rounded-full animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
@@ -30,7 +41,7 @@ export const Hero: React.FC = () => {
         ))}
       </div>
 
-      {/* Hero content - Logo, Name, and Button */}
+      {/* Hero content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="flex items-center justify-center mb-6">
@@ -39,7 +50,7 @@ export const Hero: React.FC = () => {
               Effectify
             </h1>
           </div>
-          
+
           <button 
             onClick={scrollToEffects}
             className="mt-12 px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-white/90 transition-all duration-200 transform hover:scale-105 font-secondary"
