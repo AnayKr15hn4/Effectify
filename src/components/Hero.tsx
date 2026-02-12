@@ -15,7 +15,7 @@ export const Hero: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setSeed(prev => prev + 1);
-    }, 7000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
